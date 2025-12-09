@@ -1,0 +1,111 @@
+﻿/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container1 {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    background-color: darkgreen;
+    border-radius: 50px;
+}
+
+    header h1 {
+        margin-bottom: 10px;
+    }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    display: flex;
+    justify-content: end;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+/* Sections */
+.section {
+    padding: 40px 0;
+}
+
+    .section:nth-child(even) {
+        background: #f4f4f4;
+    }
+
+/* Footer */
+footer {
+    background: #333;
+    background-color: darkgreen;
+    text-align: center;
+    padding: 20px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container__wrap img {
+    width: 80px;
+    height: 80px;
+}
+
+.container__wrap {
+    display: flex;
+    align-items: center;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+.container4 {
+    display: flex;
+    flex-direction: row; 
+    gap: 15px; 
+    justify-content: center; 
+}
+.yout {
+    width: 50px;
+    background-size: cover;
+}
+.tikt {
+    width: 50px;
+    background-size: cover;
+}
+.instg {
+    width: 50px;
+    background-size: cover;
+}
+.link{
+    display:flex;
+    gap:10px;
+}
