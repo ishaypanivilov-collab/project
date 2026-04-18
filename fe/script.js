@@ -10,40 +10,52 @@ submitBtn.addEventListener("click", function (e) {
     const subject = document.querySelector('[id="topic problem"]').value;
     const message = document.querySelector("textarea").value; 
 
-    // μεβιχϊ αγιχεϊ (Validation)
-    if (username.length < 5) {
-        alert("ων ξμΰ ηιια μδιεϊ μτηεϊ 5 ϊεειν");
+if (username.length<5) {
+	alert("Χ©Χ Χ”ΧΧ©ΧªΧΧ© Χ—Χ™Χ™Χ‘ ΧΧ”Χ™Χ•Χª ΧΧ¤Χ—Χ•Χª 5 ΧªΧ•Χ•Χ™Χ");
+     return;
+} else  console.log('username:'+username)
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailPattern.test(email)) {
+    alert("Χ›ΧªΧ•Χ‘Χª ΧΧ™ΧΧ™Χ™Χ ΧΧ Χ—Χ•Χ§Χ™Χª");
+     return;
+}
+else   console.log('email:'+email)   
+if (phone.length < 10) {
+        alert("ΧΧΧ¤Χ•Χ Χ—Χ™Χ™Χ‘ ΧΧ”Χ›Χ™Χ ΧΧ¤Χ—Χ•Χª 10 Χ΅Χ¤Χ¨Χ•Χª");
         return;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert("λϊεαϊ ΰιξιιμ μΰ ηεχιϊ");
-        return;
-    }
-
-    if (phone.length > 0 && phone.length < 10) {
-        alert("θμτεο ηιια μδλιμ μτηεϊ 10 ρτψεϊ");
-        return;
-    }
+    } else  console.log('phone number:'+phone)
 
     if (subject.length < 5) {
-        alert("πεωΰ δδεγςδ ηιια μδιεϊ μτηεϊ 5 ϊεειν");
-        return;
-    }
+        alert("Χ Χ•Χ©Χ Χ”Χ”Χ•Χ“ΧΆΧ” Χ—Χ™Χ™Χ‘ ΧΧ”Χ™Χ•Χª ΧΧ¤Χ—Χ•Χª 5 ΧªΧ•Χ•Χ™Χ");
+       return;
+    } else  console.log('subject:'+subject)
 
     if (message.length < 10) {
-        alert("ϊελο δδεγςδ ηιια μδιεϊ μτηεϊ 10 ϊεειν");
-        return;
-    }
+        alert("ΧªΧ•Χ›Χ Χ”Χ”Χ•Χ“ΧΆΧ” Χ—Χ™Χ™Χ‘ ΧΧ”Χ™Χ•Χª ΧΧ¤Χ—Χ•Χª 10 ΧªΧ•Χ•Χ™Χ");
+         return;
+    } else  console.log('message:'+ message)
 
-    // δγτρδ μχεπρεμ αξιγδ εδλμ ϊχιο
-    console.log("--- Form Submitted Successfully ---");
-    console.log("Name:", username);
-    console.log("Email:", email);
-    console.log("Phone:", phone);
-    console.log("Subject:", subject);
-    console.log("Message:", message);
+    alert("Χ”Χ•Χ“ΧΆΧ” Χ©Χ•ΧΧ—Χ” Χ‘Χ”Χ¦ΧΧ—Χ”!");
 
-    alert("δεγςδ πωμηδ αδφμηδ!");
-});
+    // Χ©ΧΧ™Χ—Χª Χ”Χ ΧªΧ•Χ Χ™Χ ΧΧ©Χ¨Χª (Node.js)
+    fetch('http://localhost:3000/submit', {
+        method: 'POST', // Χ΅Χ•Χ’ Χ”Χ‘Χ§Χ©Χ” - Χ©ΧΧ™Χ—Χ”
+        headers: {
+            'Content-Type': 'application/json' // ΧΧ•ΧΧ¨ ΧΧ©Χ¨Χª Χ©Χ”ΧΧ™Χ“ΧΆ Χ”Χ•Χ Χ‘Χ¤Χ•Χ¨ΧΧ JSON
+        },
+        body: JSON.stringify({ 
+            username: username, 
+            email: email, 
+            phone: phone, 
+            subject: subject, 
+            message: message 
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("ΧªΧ©Χ•Χ‘Χ” ΧΧ”Χ©Χ¨Χª:", data);
+    })
+    .catch(error => {
+        console.error("Χ©Χ’Χ™ΧΧ” Χ‘Χ©ΧΧ™Χ—Χ”:", error);
+    });
+})
